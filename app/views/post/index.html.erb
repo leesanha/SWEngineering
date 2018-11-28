@@ -1,0 +1,440 @@
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<%= render "navbar" %>
+<div class="container">
+    <!--이 버튼은 데이터를 전송하는 게 아니니까 type을 그냥 button으로 두면 됨.-->
+    <!--default가 get방식이니까 해당 html을 받아올 것-->
+    <div class="heartbeat">
+        마감 임박
+    </div>
+    <div class="flex">
+      
+      <% @posts.each do |p| %>
+        <% if (Date.today - p.finishDate).to_i > -4 && (Date.today - p.finishDate).to_i <= 0  %>
+          <div class="vibrate-2 card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+            <%= image_tag p.image %>
+            <div class="card-body">
+              <div>
+                <div class="finished">
+                  <% if (Date.today - p.finishDate).to_i <= 0 %>
+                    D
+                    <%= (Date.today - p.finishDate).to_i %>
+                  <% end %>
+                </div>
+                
+                <div>
+                  <%=p.title %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="flexButton">
+      <button class="btn btn-info" onclick="openCity('all')">전체</button>
+      <button class="btn btn-info" onclick="openCity('contest')">공모전</button>
+      <button class="btn btn-info" onclick="openCity('getJob')">취업</button>
+      <button class="btn btn-info" onclick="openCity('study')">스터디</button>
+      <button class="btn btn-info" onclick="openCity('schoolImformation')">학교행사</button>
+      <button class="btn btn-info" onclick="openCity('etc')">기타</button>
+    </div>
+  <div id="all" class="flex city">
+    <% @posts.each do |p| %>
+      <% if (Date.today - p.finishDate).to_i <= 0 %>
+        
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+            <%= image_tag p.image %>
+            <div class="card-body">
+              <div>
+                <div class="finished">
+                  <% if (Date.today - p.finishDate).to_i <= 0 %>
+                    D
+                    <%= (Date.today - p.finishDate).to_i %>
+                  <% elsif %>
+                    D +
+                    <%= (Date.today - p.finishDate).to_i %>
+                  <% end %>
+                </div>
+                <div>
+                  <%=p.title %>
+                </div>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="contest" class="flex city" style="display:none">
+    <% @post_contest.each do |p| %>
+      <% if (Date.today - p.finishDate).to_i <= 0 %>
+        
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+            <%= image_tag p.image %>
+            <div class="card-body">
+              <div>
+                <div class="finished">
+                  <% if (Date.today - p.finishDate).to_i <= 0 %>
+                    D
+                    <%= (Date.today - p.finishDate).to_i %>
+                  <% end %>
+                </div>
+                <div>
+                  <%=p.title %>
+                </div>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="getJob" class="flex city" style="display:none">
+    <% @post_getJob.each do |p| %>
+      <% if (Date.today - p.finishDate).to_i <= 0 %>
+        
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+            <%= image_tag p.image %>
+            <div class="card-body">
+              <div>
+                <div class="finished">
+                  <% if (Date.today - p.finishDate).to_i <= 0 %>
+                    D
+                    <%= (Date.today - p.finishDate).to_i %>
+                  <% end %>
+                </div>
+                <div>
+                  <%=p.title %>
+                </div>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+ <div id="study" class="flex city" style="display:none">
+  <% @post_study.each do |p| %>
+      <% if (Date.today - p.finishDate).to_i <= 0 %>
+        
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+            <%= image_tag p.image %>
+            <div class="card-body">
+              <div>
+                <div class="finished">
+                  <% if (Date.today - p.finishDate).to_i <= 0 %>
+                    D
+                    <%= (Date.today - p.finishDate).to_i %>
+                  <% end %>
+                </div>
+                <div>
+                  <%=p.title %>
+                </div>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="schoolImformation" class="flex city" style="display:none">
+    <% @post_schoolImformation.each do |p| %>
+        <% if (Date.today - p.finishDate).to_i <= 0 %>
+        
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+            <%= image_tag p.image %>
+            <div class="card-body">
+              <div>
+                <div class="finished">
+                  <% if (Date.today - p.finishDate).to_i <= 0 %>
+                    D
+                    <%= (Date.today - p.finishDate).to_i %>
+                  <% end %>
+                </div>
+                <div>
+                  <%=p.title %>
+                </div>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="etc" class="flex  city" style="display:none">
+    <% @post_etc.each do |p| %>
+      <% if (Date.today - p.finishDate).to_i <= 0 %>
+        
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+            <%= image_tag p.image %>
+            <div class="card-body">
+              <div>
+                <div class="finished">
+                  <% if (Date.today - p.finishDate).to_i <= 0 %>
+                    D
+                    <%= (Date.today - p.finishDate).to_i %>
+                  <% end %>
+                </div>
+                <div>
+                  <%=p.title %>
+                </div>
+              </div>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+</div>
+<% if user_signed_in? %>
+  <% Report.find(1).posts.each do |r| %>
+  
+    <% if current_user.id != nil && current_user.id == r.user_id %>
+           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">알림</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                              이용자님이 올려 주신 <%=r.title %> 의 제목을 가진 포스터가 신고를 당했으니 <br />
+                              유해한 정보나 잘 못된 정보를 만약 기재하였다면 삭제해주세요. <br />
+                              신고된 글을 관리자가 보고 제제를 가할 수 있습니다.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <% end %>
+  <% end %>
+<% end %>
+ 
+ <!--Modal -->
+ <script type="text/javascript"> 
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
+</script>
+<script>
+  function openCity(cityName) {
+    var i;
+    var x = document.getElementsByClassName("city");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+    }
+      document.getElementById(cityName).style.display = "flex"; 
+    }
+</script>
+<style>
+
+  body {
+    background: url("/assets/blackboard.jpg");
+    background-size: cover;
+  }
+
+  .card > img{
+    height:30rem;
+  }
+  .finished{
+    color:red;
+  }
+  .flex{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    
+    
+  }
+  .card{
+    margin:5px 5px 5px 5px;
+  }
+  .card:hover{
+    cursor:pointer;
+  }
+  .flexButton{
+    width:60%;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width:700px;
+    margin-bottom:30px;
+  }
+  .btn{
+    width:100px;
+  }
+.vibrate-2 {
+	-webkit-animation: vibrate-2 0.3s linear infinite both;
+	        animation: vibrate-2 0.3s linear infinite both;
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2018-6-21 16:33:8
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation vibrate-2
+ * ----------------------------------------
+ */
+@-webkit-keyframes vibrate-2 {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  40% {
+    -webkit-transform: translate(2px, 2px);
+            transform: translate(2px, 2px);
+  }
+  60% {
+    -webkit-transform: translate(-2px, 2px);
+            transform: translate(-2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+@keyframes vibrate-2 {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  40% {
+    -webkit-transform: translate(2px, 2px);
+            transform: translate(2px, 2px);
+  }
+  60% {
+    -webkit-transform: translate(-2px, 2px);
+            transform: translate(-2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+}
+.heartbeat{
+  margin-top:20px;
+  margin-bottom:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-color:rgb(255,96,96);
+  border-radius:15% 15%;
+  width:108px;
+  height:54px;
+  color:white;
+	-webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+	        animation: heartbeat 1.5s ease-in-out infinite both;
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2018-6-21 18:25:11
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation pulsate-fwd
+ * ----------------------------------------
+ */
+/* ----------------------------------------------
+ * Generated by Animista on 2018-6-21 18:28:12
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation heartbeat
+ * ----------------------------------------
+ */
+@-webkit-keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+@keyframes heartbeat {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: center center;
+            transform-origin: center center;
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  10% {
+    -webkit-transform: scale(0.91);
+            transform: scale(0.91);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  17% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+  33% {
+    -webkit-transform: scale(0.87);
+            transform: scale(0.87);
+    -webkit-animation-timing-function: ease-in;
+            animation-timing-function: ease-in;
+  }
+  45% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+  }
+}
+
+</style>

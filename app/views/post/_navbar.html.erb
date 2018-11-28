@@ -1,0 +1,95 @@
+<nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-color">
+  <a class="navbar-brand" href="/post/index">다붙여</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div style="display:flex !important;" class="navbar-collapse collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <a class="nav-link" href="/post/new">Post Upload <span class="sr-only">(current)</span></a>
+     
+    </ul>
+    <% if user_signed_in? %>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= current_user.username %>님
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <% if current_user.username == "admin"%>
+                  <a class="dropdown-item" href="/admin/report">신고된 포스터 보기</a>
+                <%end %>
+                <a class="dropdown-item" href="/users/edit">내정보 수정</a>
+                <a class="dropdown-item" href="/users/sign_out">로그아웃</a>
+                                <!--내 웹서버의 모든 routes를 보려면 rake routes를 bash창에 쓰면 된다.-->
+
+        </div>
+    </div>
+            <% else %>
+                <a href="/users/sign_in">로그인</a>
+            <% end %>
+    <!--로그인 상태일 때와 로그아웃 상태일 때를 조건문을 통해 나눔-->
+    
+    
+    <form action="/post/search" method="post">
+      <!--해당 글의 id를 보내는 데 유저에게 안보이게 보낸다. 이름은 post_id로 해서 보낸다.-->
+      <div class="row">
+          <div class="col-2">
+            
+          </div>
+          <!--rows는 처음 창의 크기를 결정한다.-->
+          <input name="search_title" type="text" class="form-control col-6" id="exampleFormControlInput1", placeholder="제목 검색">
+          <!--전달할 내용이니까 form안에 버튼을 넣어준다. 데이터를 보내려면 type은 submit-->
+          <button type="submit" class="btn btn-dark col-4">검색</button>
+      </div>
+    </form>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<style>
+  .bg-color{
+   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+   background-size: 400% 400%;
+   -webkit-animation: Gradient 15s ease infinite;
+   -moz-animation: Gradient 15s ease infinite;
+   animation: Gradient 15s ease infinite;
+  }
+    @-webkit-keyframes Gradient {
+  	0% {
+  		background-position: 0% 50%
+  	}
+  	50% {
+  		background-position: 100% 50%
+  	}
+  	100% {
+  		background-position: 0% 50%
+  	}
+  }
+  
+  @-moz-keyframes Gradient {
+  	0% {
+  		background-position: 0% 50%
+  	}
+  	50% {
+  		background-position: 100% 50%
+  	}
+  	100% {
+  		background-position: 0% 50%
+  	}
+  }
+  
+  @keyframes Gradient {
+  	0% {
+  		background-position: 0% 50%
+  	}
+  	50% {
+  		background-position: 100% 50%
+  	}
+  	100% {
+  		background-position: 0% 50%
+  	}
+  }
+
+</style>

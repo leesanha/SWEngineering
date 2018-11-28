@@ -1,0 +1,201 @@
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<%= render "navbar" %>
+<div class="container">
+  <div id="all" class="flex city">
+    <% @searched.each do |p| %>
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+          <%= image_tag p.image %>
+          <div class="card-body">
+            <div>
+              <div class="finished">
+                <% if (Date.today - p.finishDate).to_i > 0 %>
+                  D+
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% else %>
+                  D
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% end %>
+              </div>
+              
+              <div>
+                <%=p.title %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div id="contest" class="flex city" style="display:none">
+    <% @post_contest.each do |p| %>
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+          <%= image_tag p.image %>
+          <div class="card-body">
+            <div>
+              <div class="finished">
+                <% if (Date.today - p.finishDate).to_i > 0 %>
+                  D+
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% else %>
+                  D
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% end %>
+              </div>
+              
+              <div>
+                <%=p.title %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div id="getJob" class="flex city" style="display:none">
+    <% @post_getJob.each do |p| %>
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+          <%= image_tag p.image %>
+          <div class="card-body">
+            <div>
+              <div class="finished">
+                <% if (Date.today - p.finishDate).to_i > 0 %>
+                  D+
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% else %>
+                  D
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% end %>
+              </div>
+              
+              <div>
+                <%=p.title %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+   <div id="study" class="flex city" style="display:none">
+    <% @post_getJob.each do |p| %>
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+          <%= image_tag p.image %>
+          <div class="card-body">
+            <div>
+              <div class="finished">
+                <% if (Date.today - p.finishDate).to_i > 0 %>
+                  D+
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% else %>
+                  D
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% end %>
+              </div>
+              
+              <div>
+                <%=p.title %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div id="schoolImformation" class="flex city" style="display:none">
+    <% @post_schoolImformation.each do |p| %>
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+          <%= image_tag p.image %>
+          <div class="card-body">
+            <div>
+              <div class="finished">
+                <% if (Date.today - p.finishDate).to_i > 0 %>
+                  D+
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% else %>
+                  D
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% end %>
+              </div>
+              
+              <div>
+                <%=p.title %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div id="etc city" class="flex" style="display:none">
+    <% @post_etc.each do |p| %>
+        <div class="card" onclick="location.href='/post/show/<%= p.id%>'" style="width: 25rem;">
+          <%= image_tag p.image %>
+          <div class="card-body">
+            <div>
+              <div class="finished">
+                <% if (Date.today - p.finishDate).to_i > 0 %>
+                  D+
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% else %>
+                  D
+                  <%= (Date.today - p.finishDate).to_i %>
+                <% end %>
+              </div>
+              
+              <div>
+                <%=p.title %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
+
+ <!--Modal -->
+ <script type="text/javascript"> 
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
+</script>
+<script>
+  function openCity(cityName) {
+    var i;
+    var x = document.getElementsByClassName("city");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+    }
+      document.getElementById(cityName).style.display = "flex"; 
+    }
+</script>
+<style>
+  body {
+    background: url("/assets/blackboard.jpg");
+    background-size: cover;
+  }
+  .card > img{
+    height:30rem;
+  }
+  .finished{
+    color:red;
+  }
+  .flex{
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    
+    
+  }
+  .card{
+    margin:5px 5px 5px 5px;
+  }
+  .card:hover{
+    cursor:pointer;
+  }
+  .flexButton{
+    width:60%;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+</style>
